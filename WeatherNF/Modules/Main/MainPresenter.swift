@@ -15,7 +15,6 @@ protocol MainViewProtocol: AnyObject {
 
 protocol MainViewPresenterProtocol: AnyObject {
     init(view: MainViewProtocol,networkManager: NetworkManager)
-    
     func setWeather()
 }
 

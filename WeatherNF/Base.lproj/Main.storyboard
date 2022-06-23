@@ -15,10 +15,30 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="OZP-wm-Pnv">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="sectionIndexBackgroundColor" red="0.2901960784" green="0.56470588239999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="hK8-ZX-a1e"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="cZ0-ZF-6A2"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="OZP-wm-Pnv" secondAttribute="bottom" id="Skh-cm-n2R"/>
+                            <constraint firstItem="OZP-wm-Pnv" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="fym-LX-JM3"/>
+                            <constraint firstItem="OZP-wm-Pnv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="r8b-ey-94J"/>
+                            <constraint firstItem="OZP-wm-Pnv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="wDx-X7-mXT"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="eBY-PQ-ski"/>
+                    <connections>
+                        <outlet property="mainTableView" destination="OZP-wm-Pnv" id="Y6K-r9-0PR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -32,6 +52,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LXi-hN-4ax">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.29019607843137252" green="0.56470588235294117" blue="0.88627450980392153" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
