@@ -8,15 +8,14 @@
 import Foundation
 
 struct WeatherModelDayli: Codable {
-    let lat: Double
-    let lon: Double
+//    let lat: Double
+//    let lon: Double
     
-    let timezome: String?
+    let timezone: String
     let timezone_offset: Int
     let current: Current
     let hourly: [Hourly]
     let daily: [Daily]
-    let alerts: [Alerts]
     
 }
 
@@ -38,6 +37,7 @@ struct Current: Codable {
     
     let weather: [Weather]
 }
+
 struct Weather: Codable {
     let id:     Int
     let main:   String
@@ -61,13 +61,11 @@ struct Hourly: Codable {
     let wind_gust:  Double
     let weather:    [Weather]
 
-//    enum CodingKeys: String, CodingKey {
-//        case sunrise = "sunrise"
-//    }
+
 }
 struct Daily: Codable {
     let dt:         Int
-    let sunrise:    Int?
+    let sunrise:    Int
     let sunset:     Int
     let moonrise:   Int
     let moonset:    Int

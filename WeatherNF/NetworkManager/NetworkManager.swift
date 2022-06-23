@@ -27,7 +27,7 @@ class NetworkManager: NetworkManagerLayerProtocol {
     
     
     func getWeather() -> Observable<WeatherModelDayli> {
-        let url = "https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=weekly&appid=1f6a9d9fe34a81767d3f467c4e583f02"
+        let url = "https://api.openweathermap.org/data/2.5/onecall?lat=35.44&lon=-94.04&lang=ua,uk&exclude=weekly&units=metric&appid=1f6a9d9fe34a81767d3f467c4e583f02"
         return rxRequest(url)
     }
     

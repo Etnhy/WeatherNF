@@ -12,7 +12,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var mainTableView: UITableView!
     
     let dispose = DisposeBag()
-    var model: WeatherModelDayli?
+    var mainModel: WeatherModelDayli?
     var networkManager = NetworkManager()
      var presenter: MainViewPresenterProtocol?
 
@@ -21,15 +21,19 @@ class MainViewController: UIViewController {
         self.presenter = MainPresenter(view: self, networkManager: networkManager)
         registerCells()
         // Do any additional setup after loading the view.
-        view.backgroundColor = UIColor(named: "mainBakgroundColor")
+        view.backgroundColor = UIColor(named: "mainBackgroundColor")
     }
 
     fileprivate func registerCells() {
-        self.mainTableView.register(HeadTableViewCell.self, forCellReuseIdentifier: "HeadTableViewCell")
-        self.mainTableView.register(HourlyCell.self, forCellReuseIdentifier: "HourlyCell")
-        self.mainTableView.register(DailyCell.self, forCellReuseIdentifier: "DailyCell")
-
-
+        navigationController?.navigationBar.isHidden = true
+        mainTableView.allowsSelection = true
+        mainTableView.rowHeight = UITableView.automaticDimension
+        mainTableView.backgroundColor = UIColor(named: "mainBackgroundColor")!
+        mainTableView.estimatedRowHeight = 166
+        
+        self.mainTableView.register(UINib(nibName: "HeadTableViewCell", bundle: .main), forCellReuseIdentifier: "HeadTableViewCell")
+        self.mainTableView.register(UINib(nibName: "HourlyCell", bundle: .main), forCellReuseIdentifier: "HourlyCell")
+        self.mainTableView.register(UINib(nibName: "DailyCell", bundle: .main), forCellReuseIdentifier: "DailyCell")
     }
 
 }
@@ -45,16 +49,15 @@ extension MainViewController: UITableViewDataSource {
         switch indexPath.row {
         case 0:
             let cell: HeadTableViewCell = tableView.dequeueReusableCell(withIdentifier: "HeadTableViewCell", for: indexPath) as! HeadTableViewCell
-            cell.backgroundColor = .yellow
+
+            cell.configureCell(model: mainModel)
             return cell
         case 1:
             let cell: HourlyCell = tableView.dequeueReusableCell(withIdentifier: "HourlyCell", for: indexPath)  as! HourlyCell
-            cell.backgroundColor = .brown
 
             return cell
         case 2:
             let cell: DailyCell = tableView.dequeueReusableCell(withIdentifier: "DailyCell", for: indexPath) as! DailyCell
-            cell.backgroundColor = .green
 
             return cell
         default: break
@@ -75,7 +78,7 @@ extension MainViewController: UITableViewDelegate {
 // MARK: - set model
 extension MainViewController: MainViewProtocol {
     func setWeather(model: WeatherModelDayli) {
-        self.model = model
-        print(model)
+        self.mainModel = model
+        self.mainTableView.reloadData()
     }
 }
