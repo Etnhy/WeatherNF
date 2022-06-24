@@ -23,7 +23,8 @@ class HourlyCell: UITableViewCell {
         view.delegate = self
         view.register(UINib(nibName: "HourlyCollectionCell", bundle: .main ), forCellWithReuseIdentifier: "HourlyCollectionCell")
         view.backgroundColor = UIColor(named: "secondBackgroundColor")!
-
+        view.showsHorizontalScrollIndicator = false
+        view.showsVerticalScrollIndicator = false
         return view
     }()
 

@@ -8,11 +8,11 @@
 import UIKit
 
 extension Double {
-    func getDateStringFromUnixTime(dateStyle: DateFormatter.Style, timeStyle: DateFormatter.Style) -> String {
+    func getDateStringFromUnixTime(dateStyle: DateFormatter.Style, timeStyle: DateFormatter.Style, format:  String?) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = dateStyle
         dateFormatter.timeStyle = timeStyle
-        dateFormatter.dateFormat = "HH"
+        dateFormatter.dateFormat = format
         return dateFormatter.string(from: Date(timeIntervalSince1970: self))
     }
 }

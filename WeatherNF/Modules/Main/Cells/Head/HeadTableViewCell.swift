@@ -20,6 +20,9 @@ class HeadTableViewCell: UITableViewCell {
     
     @IBOutlet weak var headerImageView: UIImageView!
     
+    
+    @IBOutlet weak var mapButtonOutlet: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -34,7 +37,7 @@ class HeadTableViewCell: UITableViewCell {
     func configureCell(model: WeatherModelDayli?) {
         guard let model = model else { return }
         self.countryLabel.text = model.timezone
-        self.currentDateLabel.text = Double(model.current.dt).getDateStringFromUnixTime(dateStyle: .full, timeStyle: .none)
+        self.currentDateLabel.text = Double(model.current.dt).getDateStringFromUnixTime(dateStyle: .full, timeStyle: .none,format: nil)
         self.temperatureLabel.text = "\(Int(model.current.temp))°/\(Int(model.current.feels_like))°"
         self.humidityLabel.text = "\(model.current.humidity)%"
         self.windLabel.text = "\(Int(model.current.wind_speed))м/сек"
@@ -42,9 +45,16 @@ class HeadTableViewCell: UITableViewCell {
         headerImageView.af.setImage(withURL: imageUrl)
     }
     
-    @IBAction func locationButtonAction(_ sender: UIButton) {
-        print("go to map")
+    
+    @IBAction func mapButtonAction(_ sender: UIButton) {
+        print("click")
+        let storyboard = UIStoryboard(name: "Map", bundle: nil)
+        guard let vc = storyboard.instantiateViewController(withIdentifier: "MapViewController") as? MapViewController else { return }
+        let nav = UINavigationController(rootViewController: vc)
+        nav.pushViewController(vc, animated: true)
+
     }
+    
     
 }
 

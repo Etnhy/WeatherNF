@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		600B747E28660F6700A14E7E /* HourlyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600B747D28660F6600A14E7E /* HourlyPresenter.swift */; };
 		600B748028661E2200A14E7E /* Extension+Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600B747F28661E2200A14E7E /* Extension+Double.swift */; };
+		600B748528661F1600A14E7E /* DailyTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600B748328661F1600A14E7E /* DailyTableCell.swift */; };
+		600B748628661F1600A14E7E /* DailyTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 600B748428661F1600A14E7E /* DailyTableCell.xib */; };
+		600B748828663CB900A14E7E /* DailyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600B748728663CB900A14E7E /* DailyPresenter.swift */; };
+		600B748B2866444C00A14E7E /* SelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600B748A2866444C00A14E7E /* SelectionView.swift */; };
+		600B748D2866484C00A14E7E /* Extension+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600B748C2866484C00A14E7E /* Extension+Date.swift */; };
+		600B74902866495500A14E7E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600B748F2866495500A14E7E /* MapViewController.swift */; };
+		600B74922866496700A14E7E /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 600B74912866496600A14E7E /* Map.storyboard */; };
 		600C6AC52864B92400B3F167 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600C6AC42864B92400B3F167 /* AppDelegate.swift */; };
 		600C6AC72864B92400B3F167 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600C6AC62864B92400B3F167 /* SceneDelegate.swift */; };
 		600C6AC92864B92400B3F167 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600C6AC82864B92400B3F167 /* MainViewController.swift */; };
@@ -34,6 +41,13 @@
 		52716A8B130F71883D09AE64 /* Pods-WeatherNF.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherNF.debug.xcconfig"; path = "Target Support Files/Pods-WeatherNF/Pods-WeatherNF.debug.xcconfig"; sourceTree = "<group>"; };
 		600B747D28660F6600A14E7E /* HourlyPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyPresenter.swift; sourceTree = "<group>"; };
 		600B747F28661E2200A14E7E /* Extension+Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Double.swift"; sourceTree = "<group>"; };
+		600B748328661F1600A14E7E /* DailyTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTableCell.swift; sourceTree = "<group>"; };
+		600B748428661F1600A14E7E /* DailyTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyTableCell.xib; sourceTree = "<group>"; };
+		600B748728663CB900A14E7E /* DailyPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPresenter.swift; sourceTree = "<group>"; };
+		600B748A2866444C00A14E7E /* SelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionView.swift; sourceTree = "<group>"; };
+		600B748C2866484C00A14E7E /* Extension+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Date.swift"; sourceTree = "<group>"; };
+		600B748F2866495500A14E7E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		600B74912866496600A14E7E /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		600C6AC12864B92400B3F167 /* WeatherNF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherNF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		600C6AC42864B92400B3F167 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		600C6AC62864B92400B3F167 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,8 +94,35 @@
 			isa = PBXGroup;
 			children = (
 				600B747F28661E2200A14E7E /* Extension+Double.swift */,
+				600B748C2866484C00A14E7E /* Extension+Date.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		600B748228661EEF00A14E7E /* DaillyTableView */ = {
+			isa = PBXGroup;
+			children = (
+				600B748328661F1600A14E7E /* DailyTableCell.swift */,
+				600B748428661F1600A14E7E /* DailyTableCell.xib */,
+			);
+			path = DaillyTableView;
+			sourceTree = "<group>";
+		};
+		600B74892866444500A14E7E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				600B748A2866444C00A14E7E /* SelectionView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		600B748E2866493900A14E7E /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				600B748F2866495500A14E7E /* MapViewController.swift */,
+				600B74912866496600A14E7E /* Map.storyboard */,
+			);
+			path = Map;
 			sourceTree = "<group>";
 		};
 		600C6AB82864B92400B3F167 = {
@@ -139,6 +180,8 @@
 		607743E02864FAB30093A363 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				600B748E2866493900A14E7E /* Map */,
+				600B74892866444500A14E7E /* Views */,
 				607743E12864FABB0093A363 /* Main */,
 			);
 			path = Modules;
@@ -186,7 +229,9 @@
 		607743EF286503D30093A363 /* Daily */ = {
 			isa = PBXGroup;
 			children = (
+				600B748228661EEF00A14E7E /* DaillyTableView */,
 				607743F0286503E80093A363 /* DailyCell.swift */,
+				600B748728663CB900A14E7E /* DailyPresenter.swift */,
 				607743F1286503E80093A363 /* DailyCell.xib */,
 			);
 			path = Daily;
@@ -273,6 +318,8 @@
 				600C6AD12864B92600B3F167 /* LaunchScreen.storyboard in Resources */,
 				600C6ACE2864B92600B3F167 /* Assets.xcassets in Resources */,
 				600C6ACC2864B92400B3F167 /* Main.storyboard in Resources */,
+				600B74922866496700A14E7E /* Map.storyboard in Resources */,
+				600B748628661F1600A14E7E /* DailyTableCell.xib in Resources */,
 				607743FA286531DB0093A363 /* HourlyCollectionCell.xib in Resources */,
 				607743F3286503E80093A363 /* DailyCell.xib in Resources */,
 				607743E82865038F0093A363 /* HeadTableViewCell.xib in Resources */,
@@ -340,7 +387,12 @@
 				607743ED286503CC0093A363 /* HourlyCell.swift in Sources */,
 				600C6ADD2864BAAD00B3F167 /* WeatherModel.swift in Sources */,
 				607743E72865038F0093A363 /* HeadTableViewCell.swift in Sources */,
+				600B748828663CB900A14E7E /* DailyPresenter.swift in Sources */,
+				600B74902866495500A14E7E /* MapViewController.swift in Sources */,
+				600B748528661F1600A14E7E /* DailyTableCell.swift in Sources */,
+				600B748D2866484C00A14E7E /* Extension+Date.swift in Sources */,
 				600B748028661E2200A14E7E /* Extension+Double.swift in Sources */,
+				600B748B2866444C00A14E7E /* SelectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

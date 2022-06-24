@@ -48,6 +48,12 @@ class MainViewController: UIViewController {
 
     }
 
+    @objc fileprivate func mapButtonAction(_ sender: UIButton) {
+        print("click")
+        let storyboard = UIStoryboard(name: "Map", bundle: nil)
+        guard let vc = storyboard.instantiateViewController(withIdentifier: "MapViewController") as? MapViewController else { return }
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -63,6 +69,8 @@ extension MainViewController: UITableViewDataSource {
             let cell: HeadTableViewCell = tableView.dequeueReusableCell(withIdentifier: "HeadTableViewCell", for: indexPath) as! HeadTableViewCell
 
             cell.configureCell(model: mainModel)
+            cell.mapButtonOutlet.addTarget(self, action: #selector(mapButtonAction(_:)), for: .touchUpInside)
+            
             return cell
         case 1:
             let cell: HourlyCell = tableView.dequeueReusableCell(withIdentifier: HourlyCell.identifier, for: indexPath)  as! HourlyCell
@@ -70,6 +78,7 @@ extension MainViewController: UITableViewDataSource {
             return cell
         case 2:
             let cell: DailyCell = tableView.dequeueReusableCell(withIdentifier: "DailyCell", for: indexPath) as! DailyCell
+            cell.presenter?.setView(model: mainModel)
             
             return cell
         default: break

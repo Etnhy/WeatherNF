@@ -93,8 +93,8 @@
                             <constraint firstAttribute="height" constant="18" id="yEH-lw-bsm"/>
                         </constraints>
                     </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bc3-L5-nTR">
-                        <rect key="frame" x="2" y="54" width="200" height="130"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bc3-L5-nTR">
+                        <rect key="frame" x="2" y="54" width="220" height="130"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="130" id="U2f-OI-E8x"/>
@@ -109,9 +109,6 @@
                         </constraints>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" image="ic_my_location"/>
-                        <connections>
-                            <action selector="locationButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="NqD-xs-Ecs"/>
-                        </connections>
                     </button>
                 </subviews>
                 <constraints>
@@ -124,7 +121,7 @@
                     <constraint firstItem="1vP-g8-obY" firstAttribute="leading" secondItem="6pq-6s-SbI" secondAttribute="trailing" constant="12" id="AEG-cK-dPv"/>
                     <constraint firstItem="OoI-Q6-70c" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="B0i-Ba-ArN"/>
                     <constraint firstItem="irw-Kg-9zn" firstAttribute="leading" secondItem="R8J-US-ndj" secondAttribute="trailing" constant="12" id="Cgy-7c-l32"/>
-                    <constraint firstItem="6pq-6s-SbI" firstAttribute="leading" secondItem="Bc3-L5-nTR" secondAttribute="trailing" constant="33" id="FSs-fc-6h5"/>
+                    <constraint firstItem="6pq-6s-SbI" firstAttribute="leading" secondItem="Bc3-L5-nTR" secondAttribute="trailing" constant="13" id="FSs-fc-6h5"/>
                     <constraint firstItem="JX0-eW-c0Y" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="HU0-07-wuo"/>
                     <constraint firstItem="JX0-eW-c0Y" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="2" id="Jgg-N4-ZhY"/>
                     <constraint firstAttribute="trailing" secondItem="dsQ-Ee-lzH" secondAttribute="trailing" constant="90" id="KeX-nm-1LR"/>
@@ -135,14 +132,14 @@
                     <constraint firstAttribute="trailing" secondItem="J8K-3J-jHA" secondAttribute="trailing" constant="90" id="UnI-Wv-R84"/>
                     <constraint firstAttribute="bottom" secondItem="irw-Kg-9zn" secondAttribute="bottom" constant="41" id="Upi-If-S5a"/>
                     <constraint firstItem="dsQ-Ee-lzH" firstAttribute="leading" secondItem="JX0-eW-c0Y" secondAttribute="trailing" constant="2" id="V3i-sO-wuw"/>
-                    <constraint firstItem="GtD-WA-exV" firstAttribute="leading" secondItem="Bc3-L5-nTR" secondAttribute="trailing" constant="33" id="XcY-Md-By4"/>
+                    <constraint firstItem="GtD-WA-exV" firstAttribute="leading" secondItem="Bc3-L5-nTR" secondAttribute="trailing" constant="13" id="XcY-Md-By4"/>
                     <constraint firstItem="Bc3-L5-nTR" firstAttribute="top" secondItem="J8K-3J-jHA" secondAttribute="bottom" constant="6" id="aim-tU-LPW"/>
                     <constraint firstAttribute="bottom" secondItem="Bc3-L5-nTR" secondAttribute="bottom" constant="20" id="ciP-uh-mLM"/>
                     <constraint firstItem="6pq-6s-SbI" firstAttribute="top" secondItem="GtD-WA-exV" secondAttribute="bottom" constant="12" id="hYt-Cb-DHv"/>
                     <constraint firstAttribute="trailing" secondItem="irw-Kg-9zn" secondAttribute="trailing" constant="18" id="iej-ay-zpA"/>
                     <constraint firstItem="Bc3-L5-nTR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="2" id="jV0-sp-zdx"/>
                     <constraint firstAttribute="trailing" secondItem="1vP-g8-obY" secondAttribute="trailing" constant="18" id="s15-LK-wCl"/>
-                    <constraint firstItem="R8J-US-ndj" firstAttribute="leading" secondItem="Bc3-L5-nTR" secondAttribute="trailing" constant="33" id="ssu-HN-ojQ"/>
+                    <constraint firstItem="R8J-US-ndj" firstAttribute="leading" secondItem="Bc3-L5-nTR" secondAttribute="trailing" constant="13" id="ssu-HN-ojQ"/>
                     <constraint firstItem="dsQ-Ee-lzH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="uvP-kE-SF3"/>
                     <constraint firstItem="J8K-3J-jHA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="wkf-AR-62S"/>
                     <constraint firstItem="OoI-Q6-70c" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dsQ-Ee-lzH" secondAttribute="trailing" constant="61" id="xHm-V7-iOB"/>
@@ -155,6 +152,7 @@
                 <outlet property="currentDateLabel" destination="J8K-3J-jHA" id="RPK-aX-ENz"/>
                 <outlet property="headerImageView" destination="Bc3-L5-nTR" id="qQf-GT-qwa"/>
                 <outlet property="humidityLabel" destination="1vP-g8-obY" id="xFD-cj-9Gg"/>
+                <outlet property="mapButtonOutlet" destination="OoI-Q6-70c" id="ysL-76-F6w"/>
                 <outlet property="temperatureLabel" destination="l0p-Bm-OJf" id="UmO-XM-rl5"/>
                 <outlet property="windLabel" destination="irw-Kg-9zn" id="bH4-T6-hFu"/>
             </connections>

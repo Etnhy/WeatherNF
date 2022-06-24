@@ -23,12 +23,11 @@ class HourlyCollectionCell: UICollectionViewCell {
 
         guard let imageUrl = URL(string:"https://openweathermap.org/img/wn/\(weather.icon)@2x.png") else { return }
         self.dayWeatherImage.af.setImage(withURL: imageUrl)
-        print(weather.icon)
 
     }
     func configureWith(hourly: Hourly?) {
         guard let hourly = hourly else { return }
-        self.dayTimeLabel.text = Double(hourly.dt).getDateStringFromUnixTime(dateStyle: .none, timeStyle: .short)
+        self.dayTimeLabel.text = Double(hourly.dt).getDateStringFromUnixTime(dateStyle: .none, timeStyle: .short, format: "HH")
         self.dayTempLabel.text = "\(Int(hourly.temp))°"
         
     }
