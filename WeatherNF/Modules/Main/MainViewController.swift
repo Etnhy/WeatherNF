@@ -13,14 +13,14 @@ protocol SendUrl: AnyObject {
     func sendUrl(urlString: WeatherModelDayli?)
 }
 
-class MainViewController: UIViewController {
+class MainViewController: ParentViewController {
     @IBOutlet weak var mainTableView: UITableView!
     
     let dispose = DisposeBag()
     var mainModel: WeatherModelDayli?
     var networkManager = NetworkManager()
     var presenter: MainViewPresenterProtocol?
-
+    
     
     weak var sendUrl: SendUrl?
     
@@ -30,6 +30,10 @@ class MainViewController: UIViewController {
         self.presenter = MainPresenter(view: self, networkManager: networkManager)
         registerCells()
         view.backgroundColor = UIColor(named: "mainBackgroundColor")
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
     }
 
     fileprivate func registerCells() {
@@ -44,9 +48,7 @@ class MainViewController: UIViewController {
         
         self.mainTableView.register(UINib(nibName: "DailyCell", bundle: .main), forCellReuseIdentifier: "DailyCell")
     }
-    fileprivate func bindableView() {
 
-    }
 
     @objc fileprivate func mapButtonAction(_ sender: UIButton) {
         print("click")
@@ -104,3 +106,11 @@ extension MainViewController: MainViewProtocol {
     }
 }
 
+extension MapViewController: SendLocation {
+    func sendLocation(latitude: Double?, longitude: Double?) {
+        print(latitude)
+        print(longitude)
+    }
+    
+    
+}

@@ -9,23 +9,31 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: UIViewController {
-    @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var searchBaar: UISearchBar!
+
+protocol SendLocation: AnyObject {
+    func sendLocation(latitude: Double?, longitude: Double?)
+}
+
+class MapViewController: ParentViewController {
+
     @IBOutlet weak var mapView: MKMapView!
     let locationManager = CLLocationManager()
-    
-//    public var lat: Double?
-//    public var lon: Double
 
+    weak var sendLocation: SendLocation?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        self.navigationController?.navigationBar.isHidden = false
+        sendAction = self
     }
     
-    fileprivate func configSearchBar() {
-        searchBaar.layer.cornerRadius = 10
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.isHidden = true
     }
+    
+    
+
     fileprivate func setupLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -33,12 +41,70 @@ class MapViewController: UIViewController {
         locationManager.requestLocation()
     }
 
-    @IBAction func backActionButton(_ sender: UIButton) {
+    @objc fileprivate func backActionButton(_ sender: UIButton) {
         self.navigationController?.popToRootViewController(animated: true)
     }
     
+    fileprivate func searchButtonAction() {
+        print("search")
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.delegate = self
+        navigationController?.present(searchController, animated: true) {
+        }
+    }
+    
+    
+}
+// MARK: - UISearchBarDelegate
+extension MapViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.style = .medium
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
+        self.view.addSubview(activityIndicator)
+        
+        searchBar.resignFirstResponder()
+        dismiss(animated: true)
+        let searchRequest = MKLocalSearch.Request()
+        searchRequest.naturalLanguageQuery = searchBar.text
+        let activeSearch = MKLocalSearch(request: searchRequest)
+        activeSearch.start { (response, error) in
+            activityIndicator.stopAnimating()
+            UIApplication.shared.endIgnoringInteractionEvents()
+            if response == nil {
+             print("ERROR")
+            } else {
+                let annotations = self.mapView.annotations
+                self.mapView.removeAnnotations(annotations)
+                
+                // get lat lon
+                let latitude = response?.boundingRegion.center.latitude
+                let longitude = response?.boundingRegion.center.longitude
+                
+                let annotation = MKPointAnnotation()
+                annotation.title = searchBar.text
+                annotation.coordinate = CLLocationCoordinate2DMake(latitude!, longitude!)
+                self.mapView.addAnnotation(annotation)
+                self.sendLocation?.sendLocation(latitude: latitude, longitude: longitude)
+//                print(latitude)
+//                print(longitude)
+                
+                // zoom
+                let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude!, longitude!)
+                let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+                let region = MKCoordinateRegion(center: coordinate, span: span)
+                self.mapView.setRegion(region, animated: true)
+                
+            }
+        }
+        
+    }
 }
 
+// MARK: - CLLocationManagerDelegate
 extension MapViewController: CLLocationManagerDelegate {
     private func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .authorizedWhenInUse {
@@ -55,5 +121,12 @@ extension MapViewController: CLLocationManagerDelegate {
     }
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
+    }
+}
+
+// MARK: - Searcher
+extension MapViewController: SendSearch {
+    func searchAction(_ go: String) {
+        searchButtonAction()
     }
 }

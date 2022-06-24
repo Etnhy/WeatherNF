@@ -16,91 +16,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yrX-Jb-ne5">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CEZ-kM-uOT">
+                                <rect key="frame" x="0.0" y="94" width="414" height="802"/>
+                            </mapView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zNe-gZ-Txk">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="94"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JS1-09-npq">
-                                        <rect key="frame" x="4" y="40" width="36" height="54"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="54" id="AI2-AO-bjY"/>
-                                            <constraint firstAttribute="width" constant="36" id="ZtP-nf-tm2"/>
-                                        </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="ic_back" title=""/>
-                                        <connections>
-                                            <action selector="backActionButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="jKw-kX-2jZ"/>
-                                        </connections>
-                                    </button>
-                                    <searchBar contentMode="redraw" searchBarStyle="prominent" text="" placeholder="ищем" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PE2-TC-vOB">
-                                        <rect key="frame" x="40" y="43" width="317" height="51"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="334" id="buV-Wl-q6c"/>
-                                        </constraints>
-                                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="buV-Wl-q6c"/>
-                                            </mask>
-                                        </variation>
-                                    </searchBar>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="euY-s3-jwX">
-                                        <rect key="frame" x="357" y="42" width="50" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="1L9-px-B73"/>
-                                            <constraint firstAttribute="height" constant="50" id="xaC-wT-VN7"/>
-                                        </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="ic_search" title=""/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.20784313730000001" green="0.56470588239999997" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="PE2-TC-vOB" firstAttribute="leading" secondItem="JS1-09-npq" secondAttribute="trailing" id="5cI-5N-rML"/>
-                                    <constraint firstItem="euY-s3-jwX" firstAttribute="top" secondItem="yrX-Jb-ne5" secondAttribute="top" constant="42" id="CM5-Dt-mky"/>
-                                    <constraint firstItem="euY-s3-jwX" firstAttribute="leading" secondItem="PE2-TC-vOB" secondAttribute="trailing" id="EvW-gU-4cu"/>
-                                    <constraint firstAttribute="height" constant="94" id="WaW-XB-jQE"/>
-                                    <constraint firstItem="PE2-TC-vOB" firstAttribute="top" secondItem="yrX-Jb-ne5" secondAttribute="top" constant="43" id="Yah-TG-SZt"/>
-                                    <constraint firstItem="euY-s3-jwX" firstAttribute="leading" secondItem="PE2-TC-vOB" secondAttribute="trailing" id="bpY-rG-07T"/>
-                                    <constraint firstAttribute="trailing" secondItem="euY-s3-jwX" secondAttribute="trailing" constant="7" id="cic-EB-P80"/>
-                                    <constraint firstItem="JS1-09-npq" firstAttribute="top" secondItem="yrX-Jb-ne5" secondAttribute="top" constant="40" id="cnV-6P-emV"/>
-                                    <constraint firstAttribute="bottom" secondItem="euY-s3-jwX" secondAttribute="bottom" constant="2" id="kej-Ai-RLH"/>
-                                    <constraint firstItem="JS1-09-npq" firstAttribute="leading" secondItem="yrX-Jb-ne5" secondAttribute="leading" constant="4" id="oL0-f9-RGE"/>
-                                    <constraint firstAttribute="bottom" secondItem="JS1-09-npq" secondAttribute="bottom" id="p55-ic-lh5"/>
-                                    <constraint firstItem="PE2-TC-vOB" firstAttribute="leading" secondItem="JS1-09-npq" secondAttribute="trailing" id="p9K-64-ZHE"/>
-                                    <constraint firstAttribute="bottom" secondItem="PE2-TC-vOB" secondAttribute="bottom" id="pBR-c9-Lcm"/>
+                                    <constraint firstAttribute="height" constant="94" id="B0y-bP-N2C"/>
                                 </constraints>
                             </view>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="CEZ-kM-uOT">
-                                <rect key="frame" x="0.0" y="102" width="414" height="794"/>
-                            </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemOrangeColor"/>
                         <constraints>
-                            <constraint firstItem="yrX-Jb-ne5" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="9RN-gk-CSj"/>
-                            <constraint firstItem="yrX-Jb-ne5" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="P8X-1g-ywd"/>
-                            <constraint firstAttribute="bottom" secondItem="CEZ-kM-uOT" secondAttribute="bottom" id="T0F-lb-HMo"/>
-                            <constraint firstItem="yrX-Jb-ne5" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="eAe-yg-7fS"/>
-                            <constraint firstItem="CEZ-kM-uOT" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="g50-s9-E4p"/>
-                            <constraint firstItem="CEZ-kM-uOT" firstAttribute="top" secondItem="yrX-Jb-ne5" secondAttribute="bottom" constant="8" symbolic="YES" id="qGB-1F-Ugb"/>
-                            <constraint firstItem="CEZ-kM-uOT" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="ykh-j8-sej"/>
+                            <constraint firstItem="CEZ-kM-uOT" firstAttribute="top" secondItem="zNe-gZ-Txk" secondAttribute="bottom" id="5PZ-cv-XCa"/>
+                            <constraint firstAttribute="bottom" secondItem="CEZ-kM-uOT" secondAttribute="bottom" id="Day-zr-pen"/>
+                            <constraint firstItem="zNe-gZ-Txk" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="Dvy-Dj-TKu"/>
+                            <constraint firstItem="zNe-gZ-Txk" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="MpV-Zu-65Z"/>
+                            <constraint firstItem="CEZ-kM-uOT" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Q8m-1m-Fbf"/>
+                            <constraint firstItem="CEZ-kM-uOT" firstAttribute="top" secondItem="zNe-gZ-Txk" secondAttribute="bottom" id="dy7-GD-6oV"/>
+                            <constraint firstItem="CEZ-kM-uOT" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="eVP-Xn-jns"/>
+                            <constraint firstItem="zNe-gZ-Txk" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="jIw-ob-1wf"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="EOB-fX-JXX"/>
                     <connections>
-                        <outlet property="backButton" destination="JS1-09-npq" id="c9d-Z2-fbg"/>
                         <outlet property="mapView" destination="CEZ-kM-uOT" id="tfI-Ea-w6f"/>
-                        <outlet property="searchBaar" destination="PE2-TC-vOB" id="GQ2-pf-YSO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-10.144927536231885" y="59.598214285714285"/>
+            <point key="canvasLocation" x="900.00000000000011" y="59.598214285714285"/>
         </scene>
     </scenes>
     <resources>
-        <image name="ic_back" width="12" height="21"/>
-        <image name="ic_search" width="22" height="22"/>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
