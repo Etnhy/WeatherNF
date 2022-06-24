@@ -13,7 +13,6 @@
 		600B748628661F1600A14E7E /* DailyTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 600B748428661F1600A14E7E /* DailyTableCell.xib */; };
 		600B748828663CB900A14E7E /* DailyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600B748728663CB900A14E7E /* DailyPresenter.swift */; };
 		600B748B2866444C00A14E7E /* SelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600B748A2866444C00A14E7E /* SelectionView.swift */; };
-		600B748D2866484C00A14E7E /* Extension+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600B748C2866484C00A14E7E /* Extension+Date.swift */; };
 		600B74902866495500A14E7E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600B748F2866495500A14E7E /* MapViewController.swift */; };
 		600B74922866496700A14E7E /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 600B74912866496600A14E7E /* Map.storyboard */; };
 		600C6AC52864B92400B3F167 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600C6AC42864B92400B3F167 /* AppDelegate.swift */; };
@@ -45,7 +44,6 @@
 		600B748428661F1600A14E7E /* DailyTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyTableCell.xib; sourceTree = "<group>"; };
 		600B748728663CB900A14E7E /* DailyPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPresenter.swift; sourceTree = "<group>"; };
 		600B748A2866444C00A14E7E /* SelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionView.swift; sourceTree = "<group>"; };
-		600B748C2866484C00A14E7E /* Extension+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Date.swift"; sourceTree = "<group>"; };
 		600B748F2866495500A14E7E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		600B74912866496600A14E7E /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		600C6AC12864B92400B3F167 /* WeatherNF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherNF.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,7 +92,6 @@
 			isa = PBXGroup;
 			children = (
 				600B747F28661E2200A14E7E /* Extension+Double.swift */,
-				600B748C2866484C00A14E7E /* Extension+Date.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -390,7 +387,6 @@
 				600B748828663CB900A14E7E /* DailyPresenter.swift in Sources */,
 				600B74902866495500A14E7E /* MapViewController.swift in Sources */,
 				600B748528661F1600A14E7E /* DailyTableCell.swift in Sources */,
-				600B748D2866484C00A14E7E /* Extension+Date.swift in Sources */,
 				600B748028661E2200A14E7E /* Extension+Double.swift in Sources */,
 				600B748B2866444C00A14E7E /* SelectionView.swift in Sources */,
 			);
