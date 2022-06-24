@@ -7,10 +7,9 @@
 
 import Foundation
 
+
+// MARK: - WeatherModelDayli
 struct WeatherModelDayli: Codable {
-//    let lat: Double
-//    let lon: Double
-    
     let timezone: String
     let timezone_offset: Int
     let current: Current
@@ -19,7 +18,7 @@ struct WeatherModelDayli: Codable {
     
 }
 
-
+// MARK: - Current
 struct Current: Codable {
     let dt:         Int
     let sunrise:    Int
@@ -38,6 +37,7 @@ struct Current: Codable {
     let weather: [Weather]
 }
 
+// MARK: - Weather
 struct Weather: Codable {
     let id:     Int
     let main:   String
@@ -45,6 +45,7 @@ struct Weather: Codable {
     let icon:   String
 }
 
+// MARK: - Hourly
 struct Hourly: Codable {
     let dt:         Int
     let sunrise:    Int?
@@ -63,6 +64,8 @@ struct Hourly: Codable {
 
 
 }
+
+// MARK: - Daily
 struct Daily: Codable {
     let dt:         Int
     let sunrise:    Int
@@ -83,6 +86,8 @@ struct Daily: Codable {
     let pop:        Double
     let uvi:        Double
 }
+
+// MARK: - Temp
 struct Temp: Codable {
     let day:    Double
     let min:    Double
@@ -91,12 +96,16 @@ struct Temp: Codable {
     let eve:    Double
     let morn:   Double
 }
+
+// MARK: - FeelsLike
 struct FeelsLike: Codable {
     let day:    Double
     let night:  Double
     let eve:    Double
     let morn:   Double
 }
+
+// MARK: - Alerts
 struct Alerts: Codable {
     let sender_name: String
     let event:      String

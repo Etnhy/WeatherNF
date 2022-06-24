@@ -16,16 +16,20 @@ class HourlyCollectionCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
+    func configureImages(weather: Weather?) {
+        guard let weather = weather else {return}
+
+        guard let imageUrl = URL(string:"https://openweathermap.org/img/wn/\(weather.icon)@2x.png") else { return }
+        self.dayWeatherImage.af.setImage(withURL: imageUrl)
+        print(weather.icon)
+
+    }
     func configureWith(hourly: Hourly?) {
         guard let hourly = hourly else { return }
-
-        self.dayTempLabel.text = Double(hourly.dt).getDateStringFromUnixTime(dateStyle: .none, timeStyle: .short)
+        self.dayTimeLabel.text = Double(hourly.dt).getDateStringFromUnixTime(dateStyle: .none, timeStyle: .short)
+        self.dayTempLabel.text = "\(Int(hourly.temp))°"
         
-        guard let imageUrl = URL(string:"https://openweathermap.org/img/wn/\(hourly.weather.first!.icon)") else { return }
-        self.dayWeatherImage.af.setImage(withURL: imageUrl)
-        self.dayTempLabel.text = "\(hourly.temp)"
     }
 }

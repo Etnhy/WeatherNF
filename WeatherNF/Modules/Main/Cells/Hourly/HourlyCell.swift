@@ -12,6 +12,7 @@ class HourlyCell: UITableViewCell {
     static let identifier = "HourlyCell"
 
     var model: WeatherModelDayli?
+    var presenter: HourlyPresenterProtocol?
     
     
     lazy var dailyCollectionView: UICollectionView = {
@@ -35,13 +36,11 @@ class HourlyCell: UITableViewCell {
         self.heightAnchor.constraint(greaterThanOrEqualToConstant: 120).isActive = true
         configureCollection()
         self.backgroundColor = UIColor(named: "secondBackgroundColor")!
+        self.presenter = HourlyPresenter(view: self)
     }
     
-    
-    
-    
     fileprivate func configureCollection() {
-        
+
         addSubview(dailyCollectionView)
         dailyCollectionView.snp.makeConstraints { make in
             make.centerY.equalTo(self)
@@ -63,6 +62,8 @@ extension HourlyCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: HourlyCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "HourlyCollectionCell", for: indexPath) as! HourlyCollectionCell
         cell.configureWith(hourly: model?.hourly[indexPath.item])
+        cell.configureImages(weather: model!.hourly[indexPath.row].weather.first)
+
         return cell
     }
     
@@ -77,12 +78,13 @@ extension HourlyCell: UICollectionViewDelegateFlowLayout {
     
     
 }
-extension HourlyCell: SendHourlyData {
-    func sendHourlyData(data: WeatherModelDayli?) {
-        self.model = data
-        print(data)
-    }
-    
-    
-}
 
+extension HourlyCell: HourlyViewProtocol {
+    func setView(model: WeatherModelDayli?) {
+        guard let model = model else { return }
+        DispatchQueue.main.async {
+            self.model = model
+            self.dailyCollectionView.reloadData()
+        }
+    }
+}

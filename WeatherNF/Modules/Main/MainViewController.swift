@@ -9,8 +9,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-protocol SendHourlyData: AnyObject {
-    func sendHourlyData(data: WeatherModelDayli?)
+protocol SendUrl: AnyObject {
+    func sendUrl(urlString: WeatherModelDayli?)
 }
 
 class MainViewController: UIViewController {
@@ -20,13 +20,15 @@ class MainViewController: UIViewController {
     var mainModel: WeatherModelDayli?
     var networkManager = NetworkManager()
     var presenter: MainViewPresenterProtocol?
-    weak var sendHourlyData: SendHourlyData?
 
+    
+    weak var sendUrl: SendUrl?
+    
+    let hourly = HourlyCell()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.presenter = MainPresenter(view: self, networkManager: networkManager)
         registerCells()
-        // Do any additional setup after loading the view.
         view.backgroundColor = UIColor(named: "mainBackgroundColor")
     }
 
@@ -38,12 +40,12 @@ class MainViewController: UIViewController {
         mainTableView.estimatedRowHeight = 166
         
         self.mainTableView.register(UINib(nibName: "HeadTableViewCell", bundle: .main), forCellReuseIdentifier: "HeadTableViewCell")
-        
-//        self.mainTableView.register(UINib(nibName: "HourlyCell", bundle: .main), forCellReuseIdentifier: "HourlyCell")
-//        self.mainTableView.register(Hourly.self, forCellReuseIdentifier: "HourlyCell")
         self.mainTableView.register(HourlyCell.self, forCellReuseIdentifier: "HourlyCell")
         
         self.mainTableView.register(UINib(nibName: "DailyCell", bundle: .main), forCellReuseIdentifier: "DailyCell")
+    }
+    fileprivate func bindableView() {
+
     }
 
 }
@@ -64,11 +66,11 @@ extension MainViewController: UITableViewDataSource {
             return cell
         case 1:
             let cell: HourlyCell = tableView.dequeueReusableCell(withIdentifier: HourlyCell.identifier, for: indexPath)  as! HourlyCell
-
+            cell.presenter?.setView(model: mainModel)
             return cell
         case 2:
             let cell: DailyCell = tableView.dequeueReusableCell(withIdentifier: "DailyCell", for: indexPath) as! DailyCell
-
+            
             return cell
         default: break
         }
@@ -89,7 +91,7 @@ extension MainViewController: UITableViewDelegate {
 extension MainViewController: MainViewProtocol {
     func setWeather(model: WeatherModelDayli) {
         self.mainModel = model
-        self.sendHourlyData?.sendHourlyData(data: model)
         self.mainTableView.reloadData()
     }
 }
+
