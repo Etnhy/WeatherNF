@@ -33,7 +33,7 @@ class MainPresenter: MainViewPresenterProtocol {
     required init(view: MainViewProtocol, networkManager: NetworkManager) {
         self.view = view
         self.networkManager = networkManager
-        setWeather()
+//        setWeather()
     }
     
     func setWeather() {

@@ -15,8 +15,12 @@ protocol SendLocation: AnyObject {
 }
 
 class MapViewController: ParentViewController {
-
     @IBOutlet weak var mapView: MKMapView!
+    
+
+    var latitude:   Double?
+    var longitude:  Double?
+    
     let locationManager = CLLocationManager()
 
     weak var sendLocation: SendLocation?
@@ -29,10 +33,18 @@ class MapViewController: ParentViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+//        print(self.longitude!)
+//        print(self.latitude!)
+//        self.sendLocation?.sendLocation(latitude: latitude, longitude: longitude)
+        
+        let coordArray = ["latitude" : "\(self.latitude!)","longitude":"\(longitude!)"]
+        NotificationCenter.default.post(name: .gotLocation, object: nil, userInfo: coordArray)
+
+
         self.navigationController?.navigationBar.isHidden = true
+        
     }
-    
-    
+
 
     fileprivate func setupLocationManager() {
         locationManager.delegate = self
@@ -43,6 +55,7 @@ class MapViewController: ParentViewController {
 
     @objc fileprivate func backActionButton(_ sender: UIButton) {
         self.navigationController?.popToRootViewController(animated: true)
+
     }
     
     fileprivate func searchButtonAction() {
@@ -88,9 +101,10 @@ extension MapViewController: UISearchBarDelegate {
                 annotation.title = searchBar.text
                 annotation.coordinate = CLLocationCoordinate2DMake(latitude!, longitude!)
                 self.mapView.addAnnotation(annotation)
-                self.sendLocation?.sendLocation(latitude: latitude, longitude: longitude)
-//                print(latitude)
-//                print(longitude)
+//                self.sendLocation?.sendLocation(latitude: latitude, longitude: longitude)
+                self.latitude = latitude
+                self.longitude = longitude
+                
                 
                 // zoom
                 let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude!, longitude!)
@@ -129,4 +143,9 @@ extension MapViewController: SendSearch {
     func searchAction(_ go: String) {
         searchButtonAction()
     }
+}
+
+
+extension Notification.Name {
+    static let gotLocation = Notification.Name("location")
 }
