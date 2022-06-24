@@ -6,18 +6,83 @@
 //
 
 import UIKit
-
+import SnapKit
 class HourlyCell: UITableViewCell {
+    
+    static let identifier = "HourlyCell"
+
+    var model: WeatherModelDayli?
+    
+    
+    lazy var dailyCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        var view = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        view.dataSource = self
+        view.delegate = self
+        view.register(UINib(nibName: "HourlyCollectionCell", bundle: .main ), forCellWithReuseIdentifier: "HourlyCollectionCell")
+        view.backgroundColor = UIColor(named: "secondBackgroundColor")!
+
+        return view
+    }()
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        self.heightAnchor.constraint(greaterThanOrEqualToConstant: 120).isActive = true
+        configureCollection()
+        self.backgroundColor = UIColor(named: "secondBackgroundColor")!
+    }
+    
+    
+    
+    
+    fileprivate func configureCollection() {
+        
+        addSubview(dailyCollectionView)
+        dailyCollectionView.snp.makeConstraints { make in
+            make.centerY.equalTo(self)
+            make.leading.equalTo(self).offset(8)
+            make.trailing.equalTo(self)
+            make.height.equalTo(120)
+        }
 
-        // Configure the view for the selected state
     }
     
 }
+
+extension HourlyCell: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let hourly = model?.hourly.count else { return  0 }
+        return hourly
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: HourlyCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "HourlyCollectionCell", for: indexPath) as! HourlyCollectionCell
+        cell.configureWith(hourly: model?.hourly[indexPath.item])
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 50, height: 110)
+    }
+    
+}
+
+
+extension HourlyCell: UICollectionViewDelegateFlowLayout {
+    
+    
+}
+extension HourlyCell: SendHourlyData {
+    func sendHourlyData(data: WeatherModelDayli?) {
+        self.model = data
+        print(data)
+    }
+    
+    
+}
+

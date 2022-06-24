@@ -8,13 +8,19 @@
 import UIKit
 import RxSwift
 import RxCocoa
+
+protocol SendHourlyData: AnyObject {
+    func sendHourlyData(data: WeatherModelDayli?)
+}
+
 class MainViewController: UIViewController {
     @IBOutlet weak var mainTableView: UITableView!
     
     let dispose = DisposeBag()
     var mainModel: WeatherModelDayli?
     var networkManager = NetworkManager()
-     var presenter: MainViewPresenterProtocol?
+    var presenter: MainViewPresenterProtocol?
+    weak var sendHourlyData: SendHourlyData?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +38,11 @@ class MainViewController: UIViewController {
         mainTableView.estimatedRowHeight = 166
         
         self.mainTableView.register(UINib(nibName: "HeadTableViewCell", bundle: .main), forCellReuseIdentifier: "HeadTableViewCell")
-        self.mainTableView.register(UINib(nibName: "HourlyCell", bundle: .main), forCellReuseIdentifier: "HourlyCell")
+        
+//        self.mainTableView.register(UINib(nibName: "HourlyCell", bundle: .main), forCellReuseIdentifier: "HourlyCell")
+//        self.mainTableView.register(Hourly.self, forCellReuseIdentifier: "HourlyCell")
+        self.mainTableView.register(HourlyCell.self, forCellReuseIdentifier: "HourlyCell")
+        
         self.mainTableView.register(UINib(nibName: "DailyCell", bundle: .main), forCellReuseIdentifier: "DailyCell")
     }
 
@@ -53,7 +63,7 @@ extension MainViewController: UITableViewDataSource {
             cell.configureCell(model: mainModel)
             return cell
         case 1:
-            let cell: HourlyCell = tableView.dequeueReusableCell(withIdentifier: "HourlyCell", for: indexPath)  as! HourlyCell
+            let cell: HourlyCell = tableView.dequeueReusableCell(withIdentifier: HourlyCell.identifier, for: indexPath)  as! HourlyCell
 
             return cell
         case 2:
@@ -79,6 +89,7 @@ extension MainViewController: UITableViewDelegate {
 extension MainViewController: MainViewProtocol {
     func setWeather(model: WeatherModelDayli) {
         self.mainModel = model
+        self.sendHourlyData?.sendHourlyData(data: model)
         self.mainTableView.reloadData()
     }
 }

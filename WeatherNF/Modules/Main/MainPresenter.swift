@@ -13,15 +13,20 @@ protocol MainViewProtocol: AnyObject {
     func setWeather(model: WeatherModelDayli)
 }
 
+
+
 protocol MainViewPresenterProtocol: AnyObject {
     init(view: MainViewProtocol,networkManager: NetworkManager)
     func setWeather()
 }
 
+
+
 class MainPresenter: MainViewPresenterProtocol {
     
     let dispose = DisposeBag()
     weak var view: MainViewProtocol?
+    
     var networkManager: NetworkManager!
     var weatherModel: WeatherModelDayli?
     
