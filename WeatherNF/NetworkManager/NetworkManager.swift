@@ -12,6 +12,8 @@ import RxSwift
 
 protocol NetworkManagerLayerProtocol {
     func getWeather() -> Observable<WeatherModelDayli>
+    func getWeatherWithName(cityName: String) -> Observable<CurrentWeatherModel>
+    func getWeatherWithLatLon(lat: Double, lon: Double) -> Observable<CurrentWeatherModel>
 }
 // // https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=daily&appid=1f6a9d9fe34a81767d3f467c4e583f02
 
@@ -23,11 +25,35 @@ protocol NetworkManagerLayerProtocol {
 class NetworkManager: NetworkManagerLayerProtocol {
 
     
+    
+
+    
+
+//    let defaultLatitude = 47.91
+//    let defaultLongitude = 33.37
+    //  https://api.openweathermap.org/data/2.5/onecall?lat=47.91&lon=33.37&lang=ua,uk&exclude=weekly&units=metric&appid=9e64db94a738a9d0398f267a443b079c
+    //https://api.openweathermap.org/data/2.5/weather?lat=47.91&lon=33.37&appid=9e64db94a738a9d0398f267a443b079c
+    //https://api.openweathermap.org/data/2.5/forecast/daily?lat=47.91&lon=33.37&appid=1f6a9d9fe34a81767d3f467c4e583f02
     static let shared = NetworkManager()
     
     
+/////    //https://api.openweathermap.org/data/2.5/weather?lat=47.91&lon=33.37&appid=9e64db94a738a9d0398f267a443b079c
+                                // = 47.91      // = 33.37
+    func getWeatherWithLatLon(lat: Double, lon: Double) -> Observable<CurrentWeatherModel> {
+        let url = "\(Net.api_url)/weather?lat=\(lat)&lon=\(lon)&units=metric&appid=\(Net.api_key)"
+        return rxRequest(url)
+    }
+    
+    func getWeatherWithName(cityName: String) -> Observable<CurrentWeatherModel> {
+        let url = "https://api.openweathermap.org/data/2.5/weather?q=\(cityName)&lang=ua,uk&units=metric&appid=\(Net.api_key)"
+//        let url = "\(Net.api_url)weather?q=\(cityName)&appid=\(Net.api_key)"
+        print(url)
+       return rxRequest(url)
+    }
+    
     func getWeather() -> Observable<WeatherModelDayli> {
-        let url = "\(Net.api_url)onecall?lat=35.44&lon=-94.04&lang=ua,uk&exclude=weekly&units=metric&appid=\(Net.api_key)"
+        let url = "\(Net.api_url)onecall?lat=47.91&lon=33.37&lang=ua,uk&exclude=weekly&units=metric&appid=\(Net.api_key)"
+        print(url)
         return rxRequest(url)
     }
     

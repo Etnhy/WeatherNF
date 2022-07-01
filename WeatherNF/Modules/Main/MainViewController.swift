@@ -8,6 +8,8 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import CoreLocation
+
 
 protocol SendUrl: AnyObject {
     func sendUrl(urlString: WeatherModelDayli?)
@@ -15,54 +17,68 @@ protocol SendUrl: AnyObject {
 
 class MainViewController: ParentViewController {
 
+    @IBOutlet weak var mainTableView: UITableView!
+    
+    
+    var presenter: MainViewPresenterProtocol?
+    var networkManager = NetworkManager()
+    var cityModel: CurrentWeatherModel?
+    var mainModel: WeatherModelDayli?
+    let dispose = DisposeBag()
+    let hourly = HourlyCell()
+    weak var sendUrl: SendUrl?
     var latitude:   Double?
     var longitude:  Double?
 
 
     
-    @IBOutlet weak var mainTableView: UITableView!
-    
-    let dispose = DisposeBag()
-    var mainModel: WeatherModelDayli?
-    var networkManager = NetworkManager()
-    var presenter: MainViewPresenterProtocol?
-    
-    
-    weak var sendUrl: SendUrl?
-    
-    let hourly = HourlyCell()
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor(named: "mainBackgroundColor")
         self.presenter = MainPresenter(view: self, networkManager: networkManager)
         self.presenter?.setWeather()
+        self.presenter?.setWeatherWithCityName()
         registerCells()
-        view.backgroundColor = UIColor(named: "mainBackgroundColor")
+        setManager()
 
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.gotNotification), name: .gotLocation, object: nil)
+
+        
+        guard let latitude = self.latitude else {return}
+        guard let longitude = self.latitude else {return}
+//
+
+        DispatchQueue.main.async {
+            self.presenter?.setWeatherLatLon(latitude: 24.00, longitude: 49.84 )
+//            self.mainTableView.reloadData()
+
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let map = MapViewController()
-        map.sendLocation = self
-//        print(self.longitude)
-//        print(self.latitude)
-        
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(gotNotification), name: .gotLocation, object: nil)
-        
         
 
+
     }
-    
+
    @objc fileprivate func gotNotification(notification: Notification) {
        guard let userInfo = notification.userInfo else { return }
-       guard let latitude = userInfo["latitude"] else { return }
-       guard let longitude = userInfo["longitude"] else { return }
-       print(latitude)
-       print(longitude)
+       guard let latitude = userInfo["latitude"]  else { return }
+       guard let longitude = userInfo["longitude"]  else { return }
+       self.latitude = latitude as? Double
+       self.longitude = longitude as? Double
+       print(longitude, latitude)
+       guard let latitude = self.latitude else {return}
+       guard let longitude = self.latitude else {return}
+
+
+       self.presenter?.setWeatherLatLon(latitude: latitude, longitude: longitude )
+       self.mainTableView.reloadData()
    }
     
     
@@ -101,7 +117,7 @@ extension MainViewController: UITableViewDataSource {
         case 0:
             let cell: HeadTableViewCell = tableView.dequeueReusableCell(withIdentifier: "HeadTableViewCell", for: indexPath) as! HeadTableViewCell
 
-            cell.configureCell(model: mainModel)
+            cell.configureCell(model: cityModel)
             cell.mapButtonOutlet.addTarget(self, action: #selector(mapButtonAction(_:)), for: .touchUpInside)
             cell.selectionStyle = .none
             return cell
@@ -119,6 +135,11 @@ extension MainViewController: UITableViewDataSource {
         return UITableViewCell()
     }
     
+    // set privacy
+    fileprivate func setManager() {
+        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.requestWhenInUseAuthorization()
+    }
     
 }
 
@@ -131,23 +152,18 @@ extension MainViewController: UITableViewDelegate {
 
 // MARK: - set model
 extension MainViewController: MainViewProtocol {
+    func setWeatherCity(cityModel: CurrentWeatherModel) {
+        DispatchQueue.main.async {
+            self.cityModel = cityModel
+            self.mainTableView.reloadData()
+            print(cityModel)
+        }
+    }
+    
     func setWeather(model: WeatherModelDayli) {
-        self.mainModel = model
-        self.mainTableView.reloadData()
+        DispatchQueue.main.async {
+            self.mainModel = model
+            self.mainTableView.reloadData()
+        }
     }
-}
-
-extension MainViewController: SendLocation {
-    func sendLocation(latitude: Double?, longitude: Double?) {
-        guard let latitude = latitude else { return }
-        guard let longitude = longitude else { return }
-
-        self.latitude = latitude
-        self.longitude = longitude
-        print(self.longitude!)
-        print(self.latitude!)
-
-    }
-    
-    
 }

@@ -34,16 +34,27 @@ class HeadTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configureCell(model: WeatherModelDayli?) {
+//    func configureCell(model: WeatherModelDayli?) {
+//        guard let model = model else { return }
+//        self.countryLabel.text = model.timezone
+//        self.currentDateLabel.text = Double(model.current.dt).getDateStringFromUnixTime(dateStyle: .full, timeStyle: .none,format: nil)
+//        self.temperatureLabel.text = "\(Int(model.current.temp))°/\(Int(model.current.feels_like))°"
+//        self.humidityLabel.text = "\(model.current.humidity)%"
+//        self.windLabel.text = "\(Int(model.current.wind_speed))м/сек"
+//        guard let imageUrl = URL(string: "https://openweathermap.org/img/wn/\(model.current.weather[0].icon)@2x.png") else {return}
+//        headerImageView.af.setImage(withURL: imageUrl)
+//    }
+    func configureCell(model: CurrentWeatherModel?) {
         guard let model = model else { return }
-        self.countryLabel.text = model.timezone
-        self.currentDateLabel.text = Double(model.current.dt).getDateStringFromUnixTime(dateStyle: .full, timeStyle: .none,format: nil)
-        self.temperatureLabel.text = "\(Int(model.current.temp))°/\(Int(model.current.feels_like))°"
-        self.humidityLabel.text = "\(model.current.humidity)%"
-        self.windLabel.text = "\(Int(model.current.wind_speed))м/сек"
-        guard let imageUrl = URL(string: "https://openweathermap.org/img/wn/\(model.current.weather[0].icon)@2x.png") else {return}
+        self.countryLabel.text = model.name
+        self.currentDateLabel.text = Double(model.dt).getDateStringFromUnixTime(dateStyle: .full, timeStyle: .none,format: nil)
+        self.temperatureLabel.text = "\(Int(model.main.temp_min))°/\(Int(model.main.temp_max))°"
+        self.humidityLabel.text = "\(model.main.humidity)%"
+        self.windLabel.text = "\(Int(model.wind.speed))м/сек"
+        guard let imageUrl = URL(string: "https://openweathermap.org/img/wn/\(model.weather[0].icon)@2x.png") else {return}
         headerImageView.af.setImage(withURL: imageUrl)
     }
+
     
     
     @IBAction func mapButtonAction(_ sender: UIButton) {

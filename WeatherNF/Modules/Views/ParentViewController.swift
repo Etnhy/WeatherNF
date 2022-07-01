@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 protocol SendSearch: AnyObject {
     func searchAction(_ go: String)
@@ -14,6 +15,7 @@ protocol SendSearch: AnyObject {
 class ParentViewController: UIViewController {
 
     weak var sendAction: SendSearch?
+    let locationManager = CLLocationManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
