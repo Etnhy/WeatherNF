@@ -26,6 +26,7 @@ class MainViewController: ParentViewController {
     var mainModel: WeatherModelDayli?
     let dispose = DisposeBag()
     let hourly = HourlyCell()
+    
     weak var sendUrl: SendUrl?
     var latitude:   Double?
     var longitude:  Double?

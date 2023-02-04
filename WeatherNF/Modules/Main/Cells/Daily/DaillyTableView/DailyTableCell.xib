@@ -65,7 +65,7 @@
                 <outlet property="dailyImageView" destination="ffS-Jv-Bie" id="geY-r3-Q69"/>
                 <outlet property="dailyTempLabel" destination="hNa-mc-jZo" id="zhp-Hz-Gla"/>
             </connections>
-            <point key="canvasLocation" x="133" y="76"/>
+            <point key="canvasLocation" x="131.8840579710145" y="75.334821428571431"/>
         </tableViewCell>
     </objects>
     <resources>

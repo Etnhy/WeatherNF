@@ -36,6 +36,7 @@ class ParentViewController: UIViewController {
         searchButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
         searchButton.setImage(UIImage(named: "search")?.withRenderingMode(.alwaysOriginal), for: .normal)
         let serchItem = UIBarButtonItem(customView: searchButton)
+        
         let currWidt = serchItem.customView?.widthAnchor.constraint(equalToConstant: 40)
         currWidt?.isActive = true
         let currHeight = serchItem.customView?.heightAnchor.constraint(equalToConstant: 40)

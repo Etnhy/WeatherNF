@@ -32,8 +32,10 @@ class MainPresenter: MainViewPresenterProtocol {
     weak var view: MainViewProtocol?
     
     var networkManager: NetworkManager!
+    
     var weatherModel: WeatherModelDayli?
     var cityWeather: CurrentWeatherModel?
+    
     required init(view: MainViewProtocol, networkManager: NetworkManager) {
         self.view = view
         self.networkManager = networkManager
