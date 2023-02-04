@@ -157,7 +157,6 @@ extension MainViewController: MainViewProtocol {
         DispatchQueue.main.async {
             self.cityModel = cityModel
             self.mainTableView.reloadData()
-            print(cityModel)
         }
     }
     
